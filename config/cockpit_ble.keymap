@@ -37,20 +37,7 @@
 
 
 / {
-    behaviors {
-        rgb_encoder_right: rgb_encoder_right {
-            compatible = "zmk,behavior-sensor-rotate";
-            label = "RGB_ENCODER_RIGHT";
-            #sensor-binding-cells = <0>;
-            bindings =  <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
-        };
-        rgb_encoder_left: rgb_encoder_left {
-            compatible = "zmk,behavior-sensor-rotate";
-            label = "RGB_ENCODER_LEFT";
-            #sensor-binding-cells = <0>;
-            bindings = <&rgb_ug RGB_EFF>, <&rgb_ug RGB_EFR>;
-        };
-    };
+  
 
     keymap {
         compatible = "zmk,keymap";
