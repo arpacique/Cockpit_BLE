@@ -37,25 +37,7 @@
 
 
 / {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <1 2>; //lower and raise
-            then-layer = <6>;  // adjust
-        };
-    };
-
     behaviors {
-        ht: hold_tap {
-            label = "hold_tap";
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            global-quick-tap;
-            bindings = <&kp>, <&kp>;
-        };
         rgb_encoder_right: rgb_encoder_right {
             compatible = "zmk,behavior-sensor-rotate";
             label = "RGB_ENCODER_RIGHT";
