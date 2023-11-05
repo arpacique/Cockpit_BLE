@@ -16,10 +16,8 @@
 #define _COLEMAK       0
 #define _LOWER         1
 #define _RAISE         2
-#define _SPACE_RIGHT   3
-#define _SPACE_LEFT    4
-#define _NAVIGATION    5
-#define _ADJUST        6
+#define _NAVIGATION    3
+#define _ADJUST        4
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space
 &lt {
@@ -108,7 +106,7 @@
                 &kp ESC  &trans  &trans   &trans        &trans          &trans                        &kp RS(N8)  &kp RS(N9)      &kp RS(N0)        &kp RS(N6)           &kp RA(EQUAL)  &trans
                 &trans   &trans  &trans   &trans        &trans          &trans                        &kp RA(N7)  &kp RA(N0)      &kp PLUS          &kp RA(N4)           &kp RA(N3)     &kp GRAVE
                 &trans   &trans  &trans   &trans        &trans          &trans                        &kp RA(N8)  &kp RA(N9)      &kp NON_US_BSLH   &kp RS(NON_US_BSLH)  &kp RA(MINUS)  &trans
-                                 &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PREV   &kp C_NEXT          &kp RET      &mo _RAISE     &kp RIGHT_GUI
+                                 &kp LALT  &lt _LOWER TAB    &kp SPACE         &kp C_PREV   &kp C_NEXT          &kp RET      &mo _RAISE     &kp RIGHT_GUI
             >;
             
             
@@ -129,48 +127,9 @@
                 &kp ESC      &kp AMPS    &kp N1    &kp N2        &kp N3         &kp KP_MINUS                      &kp F1  &kp F2                  &kp F3            &kp F4       &trans   &kp DEL
                 &trans       &kp MINUS   &kp N4    &kp N5        &kp N6         &kp KP_PLUS                       &kp F5  &kp F6                  &kp F7            &kp F8       &trans   &trans
                 &caps_word   &kp PRCNT   &kp N7    &kp N8        &kp N9         &kp N0                            &kp F9  &kp F10                 &kp F11           &kp F12      &trans   &trans
-                                         &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
+                                         &kp LALT  &lt _LOWER TAB    &kp SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &kp SPACE          &mo _RAISE     &kp RIGHT_GUI
             >;
 
-        };
-
-        space_right_layer {
-        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │ ESC  │      │      │  €   │  £   │  Ğ   │                          │      │      │      │      │      │      │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │  !   │  @   │  Ş   │  ₺   │      │                          │      │      │      │      │      │      │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │  Ç   │      │      │                          │      │      │      │      │      │      │
-        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
-        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯
-            label = "Space R";            
-            bindings = <
-                &kp ESC      &trans    &trans     &kp RA(E)        &kp  RA(N2)     &kp LBKT                      &trans            &trans                  &trans          &trans   &trans    &trans
-                &trans       &kp EXCL  &kp RA(Q)  &kp SEMI         &kp  RA(T)      &trans                        &trans            &trans                  &trans          &trans   &trans    &trans
-                &trans       &trans    &trans     &ht LSHFT  DOT   &trans          &trans                        &trans            &trans                  &trans          &trans   &trans    &trans
-                                       &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
-                >;
-        };
-
-        space_left_layer {
-        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │      │      │      │      │      │      │                          │      │      │  Ü   │      │  :   │ DEL  │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │      │      │  I   │  I   │  Ö   │   `  │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │      │      │  ^   │  ~   │  ?   │ ENT  │
-        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │RGB_TOG ││ EP_TOG │ │ SPACE  │RAISE │ WIN  │
-        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯
-            label = "Space L";            
-            bindings = <
-                &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &kp RBKT            &trans         &kp LS(SLASH)   &kp DEL
-                &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &kp LS(I)           &kp I          &kp COMMA       &kp RA(NON_US_HASH)
-                &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &ht RSHFT RS(N3)    &kp RA(RBKT)   &kp UNDER       &trans
-                                       &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE       &rgb_ug RGB_TOG  &ext_power EP_TOG     &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
-            >;
-            sensor-bindings = <&rgb_encoder_left &rgb_encoder_right>;
         };
 
         navigation_layer {
@@ -188,7 +147,7 @@
                 &kp ESC      &trans    &trans     &trans           &trans       &trans       &kp C_PREV              &kp PG_UP   &kp UP                  &trans         &trans         &trans
                 &trans       &trans    &trans     &trans           &trans       &trans       &kp HOME                &kp LEFT    &kp DOWN                &kp RIGHT      &kp END        &kp C_PLAY_PAUSE
                 &trans       &trans    &trans     &trans           &trans       &trans       &kp C_NEXT              &kp PG_DN   &none                   &kp C_VOL_DN   &kp C_VOL_UP   &kp C_MUTE
-                                       &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
+                                       &kp LALT  &lt _LOWER TAB    &kp SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &kp SPACE          &mo _RAISE     &kp RIGHT_GUI
             >;
         };
 
