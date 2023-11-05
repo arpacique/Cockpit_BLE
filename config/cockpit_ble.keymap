@@ -40,7 +40,7 @@
         compatible = "zmk,conditional-layers";
         tri_layer {
             if-layers = <1 2>; //lower and raise
-            then-layer = <6>;  // adjust
+            then-layer = <4>;  // adjust
         };
     };
 
@@ -104,7 +104,7 @@
             >;
 
         };
-
+      navigation_layer {
       label = "Navi";     
             bindings = <
                 &kp ESC      &trans    &trans     &trans           &trans       &trans       &kp C_PREV              &kp PG_UP   &kp UP                  &trans         &trans         &trans
