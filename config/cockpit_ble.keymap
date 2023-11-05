@@ -107,9 +107,9 @@
       navigation_layer {
       label = "Navi";     
             bindings = <
-                &trans     &trans       &trans       &kp UP       &LC(HOME)    &kp PG_UP                  &trans    &kp N7    &kp N8     &kp N9   &kp FSLH    &trans
-                &trans     &kp HOME     &kp LEFT     &kp DOWN     &kp RIGHT    &kp END                    &trans    &kp N4    &kp N5     &kp N6   &kp ASTRK   &kp EQUAL
-                &trans     &trans       &trans       &trans       &LC(END)     &kp PG_DN                  &trans    &kp N1    &kp N2     &kp N3   &kp MINUS   &trans
+                &trans     &trans       &trans       &kp UP       &kp LC(HOME)    &kp PG_UP                  &trans    &kp N7    &kp N8     &kp N9   &kp FSLH    &trans
+                &trans     &kp HOME     &kp LEFT     &kp DOWN     &kp RIGHT       &kp END                    &trans    &kp N4    &kp N5     &kp N6   &kp ASTRK   &kp EQUAL
+                &trans     &trans       &trans       &trans       &kp LC(END)     &kp PG_DN                  &trans    &kp N1    &kp N2     &kp N3   &kp MINUS   &trans
                                                    &trans     &trans       &trans   &kp C_PLAY_PAUSE  &kp C_MUTE      &kp N0    &kp N0     &kp DOT          
             >;
         };
