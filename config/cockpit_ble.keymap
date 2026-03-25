@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 ozkan (github.com/ozkan)
+ * Copyright (c) 2023 arpacique (github.com/arpacique)
  *
  * SPDX-License-Identifier: MIT
  */
@@ -13,13 +13,16 @@
 
 
 // Layers
-#define _BASE          0
-#define _LOWER         1
-#define _RAISE         2
-#define _SPACE_RIGHT   3
-#define _SPACE_LEFT    4
-#define _NAVIGATION    5
-#define _ADJUST        6
+#define DEFAULT 0
+#define RAISE 1
+#define LOWER 2
+#define NUMPAD 3
+#define BT_CTRL  4
+
+&mt {
+    flavor = "tap-preferred";
+    tapping_term_ms = <170>;
+};
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space
 &lt {
@@ -39,7 +42,7 @@
         compatible = "zmk,conditional-layers";
         tri_layer {
             if-layers = <1 2>; //lower and raise
-            then-layer = <6>;  // adjust
+            then-layer = <4>;  // bt_ctrl
         };
     };
 
@@ -72,7 +75,7 @@
             timeout-ms = <50>;
             key-positions = <1 2>; 
             bindings = <&studio_unlock>; 
-            layers = <_BASE>;     
+            layers = <DEFAULT>;     
         }; 
 
     };
@@ -83,22 +86,42 @@
         compatible = "zmk,keymap";
         default_layer {
        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-       // │  ESC │  Q   │  W   │  F   │  P   │  G   │                          │  J   │  L   │  U   │  Y   │   ;  │ BSPC │
+       // │  TAB │  Q   │  W   │  F   │  P   │  G   │                          │  J   │  L   │  U   │  Y   │   ;  │ BSPC │
        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-       // │ CTRL │  A   │  R   │  S   │NAV T │  D   │                          │  H   │  N   │  E   │  I   │  O   │   '  │
+       // │  ESC │  A   │  R   │  S   │NAV T │  D   │                          │  H   │  N   │  E   │  I   │  O   │   '  │
        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
        // │SFT_CL│ALT Z │CTL X │SFT C │  V   │  B   │         (ENCODERS)       │  K   │  M   │SFT , │CTL . │ALT / │ ENT  │
        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯            
-            display-name = "Colemak";
+            display-name = "QWERTY ENG";
             bindings = <
-                &kp ESC        &kp Q      &kp W       &kp F       &kp P              &kp G                           &kp J &kp L  &kp U                 &kp Y          &kp LS(NON_US_HASH) &kp BSPC
-                &kp LCTRL      &kp A      &kp R       &kp S       &lt _NAVIGATION T  &kp D                           &kp H &kp N  &kp E                 &kp SQT        &kp O               &kp LS(N2)
-                &ht LSHFT CLCK &ht LALT Z &ht LCTRL X &ht LSHFT C &kp V              &kp B                           &kp K &kp M  &ht RSHFT NON_US_HASH &ht RCTRL FSLH &ht LALT RS(N7)     &ht RSHFT RET
-                                    &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
+                &kp TAB   &kp Q      &kp W      &kp E       &kp R       &kp T             &kp Y     &kp U        &kp I       &kp O      &kp P         &kp BSPC
+                &kp ESC   &mt LGUI A &mt LALT S &mt LSHFT D &mt LCTRL F &kp G             &kp H     &mt LCTRL J  &mt LSHFT K &mt LALT L &mt LGUI SEMI &kp SQT
+                &kp LSHFT &kp Z      &kp X      &kp C       &kp V       &kp B             &kp N     &kp M        &kp COMMA   &kp DOT    &kp FSLH      &mt RSHFT ENTER
+                            &kp LCTRL    &mo LOWER   &lt NUMPAD SPACE       &kp C_PLAY_PAUSE  &kp C_MUTE          &lt NUMPAD SPACE    &mo RAISE    &kp RGUI    
             >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        raise_layer {
+        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
+        // │ ESC  │  /   │  1   │  2   │  3   │  -   │                          │  F1  │  F2  │  F3  │  F4  │      │      │
+        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
+        // │      │  *   │  4   │  5   │  6   │  +   │                          │  F5  │  F6  │  F7  │  F8  │      │      │
+        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
+        // │      │  %   │  7   │  8   │  9   │  0   │                          │  F9  │  F10 │ F11  │  F1  │      │      │
+        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
+        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
+        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯   
+            display-name = "Raise";         
+            bindings = <
+                &kp GRAVE &kp EXCL &kp AT   &kp HASH &kp DLLR    &kp PRCNT  &kp N6    &kp N7      &kp N8     &kp N9       &kp N0       &kp DEL
+                &trans    &kp F1   &kp F2   &kp F3   &kp F4      &kp F5     &kp F6    &kp MINUS   &kp EQUAL  &kp LBKT     &kp RBKT     &kp BSLH
+                &kp CAPS  &kp F7   &kp F8   &kp F9   &kp F10     &kp F11    &kp F12   &kp LT      &kp GT     &kp PG_UP    &kp PG_DN    &kp ENTER
+                                         &kp trans  &kp trans    &kp trans         &kp trans  &kp trans       &kp trans      &kp trans    &kp trans
+            >;
+
         };
 
         lower_layer {
@@ -113,36 +136,17 @@
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯    
             display-name = "Lower";        
             bindings = <
-                &kp ESC  &trans  &trans   &trans        &trans          &trans                        &kp RS(N8)  &kp RS(N9)      &kp RS(N0)        &kp RS(N6)           &kp RA(EQUAL)  &trans
-                &trans   &trans  &trans   &trans        &trans          &trans                        &kp RA(N7)  &kp RA(N0)      &kp PLUS          &kp RA(N4)           &kp RA(N3)     &kp GRAVE
-                &trans   &trans  &trans   &trans        &trans          &trans                        &kp RA(N8)  &kp RA(N9)      &kp NON_US_BSLH   &kp RS(NON_US_BSLH)  &kp RA(MINUS)  &trans
-                         &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PREV   &kp C_NEXT          &kp RET      &mo _RAISE     &kp RIGHT_GUI
-            >;
-            
+                &kp TILDE  &trans   &trans   &trans   &trans      &trans     &kp CARET &kp AMPS     &kp ASTRK  &kp LPAR     &kp RPAR     &kp DEL
+                &trans     &kp F1   &kp F2   &kp F3   &kp F4      &kp F5     &kp F6    &kp UNDER    &kp PLUS   &kp LBRC     &kp RBRC     &kp PIPE
+                &kp CAPS   &kp F7   &kp F8   &kp F9   &kp F10     &kp F11    &kp F12   &trans       &trans     &kp HOME     &kp END      &trans
+                                         &kp trans  &kp trans    &kp trans         &kp trans  &kp trans       &kp trans      &kp trans    &kp trans
+            >;           
             
         };
         
-        raise_layer {
-        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │ ESC  │  /   │  1   │  2   │  3   │  -   │                          │  F1  │  F2  │  F3  │  F4  │      │      │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │  *   │  4   │  5   │  6   │  +   │                          │  F5  │  F6  │  F7  │  F8  │      │      │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │  %   │  7   │  8   │  9   │  0   │                          │  F9  │  F10 │ F11  │  F1  │      │      │
-        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
-        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯   
-            display-name = "Raise";         
-            bindings = <
-                &kp ESC      &kp AMPS    &kp N1    &kp N2        &kp N3         &kp KP_MINUS                      &kp F1  &kp F2                  &kp F3            &kp F4       &trans   &kp DEL
-                &trans       &kp MINUS   &kp N4    &kp N5        &kp N6         &kp KP_PLUS                       &kp F5  &kp F6                  &kp F7            &kp F8       &trans   &trans
-                &caps_word   &kp PRCNT   &kp N7    &kp N8        &kp N9         &kp N0                            &kp F9  &kp F10                 &kp F11           &kp F12      &trans   &trans
-                                         &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
-            >;
+       
 
-        };
-
-        space_right_layer {
+        numpad {
         // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
         // │ ESC  │      │      │  €   │  £   │  Ğ   │                          │      │      │      │      │      │      │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
@@ -152,55 +156,16 @@
         // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
         //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯
-            display-name = "Space R";            
+            display-name = "Numpad";            
             bindings = <
-                &kp ESC      &trans    &trans     &kp RA(E)        &kp  RA(N2)     &kp LBKT                      &trans            &trans                  &trans          &trans   &trans    &trans
-                &trans       &kp EXCL  &kp RA(Q)  &kp SEMI         &kp  RA(T)      &trans                        &trans            &trans                  &trans          &trans   &trans    &trans
-                &trans       &trans    &trans     &ht LSHFT  DOT   &trans          &trans                        &trans            &trans                  &trans          &trans   &trans    &trans
-                                       &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
-                >;
-        };
-
-        space_left_layer {
-        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │      │      │      │      │      │      │                          │      │      │  Ü   │      │  :   │ DEL  │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │      │      │  I   │  I   │  Ö   │   `  │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │      │      │  ^   │  ~   │  ?   │ ENT  │
-        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │RGB_TOG ││ EP_TOG │ │ SPACE  │RAISE │ WIN  │
-        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯
-            display-name = "Space L";            
-            bindings = <
-                &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &kp RBKT            &trans         &kp LS(SLASH)   &kp DEL
-                &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &kp LS(I)           &kp I          &kp COMMA       &kp RA(NON_US_HASH)
-                &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &ht RSHFT RS(N3)    &kp RA(RBKT)   &kp UNDER       &trans
-                                       &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE       &rgb_ug RGB_TOG  &ext_power EP_TOG     &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
-            >;
-            sensor-bindings = <&rgb_encoder_left &rgb_encoder_right>;
-        };
-
-        navigation_layer {
-        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │ ESC  │      │      │      │      │      │                          │C_PREV│ PGUP │  UP  │      │      │      │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │NAV T │      │                          │ HOME │ LEFT │ DOWN │ RGHT │ END  │MPLY  │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │C_NEXT│PGDOWN│      │VLDOWN│ VLUP │MUTE  │
-        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
-        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯   
-            display-name = "Navi";     
-            bindings = <
-                &kp ESC      &trans    &trans     &trans           &trans       &trans       &kp C_PREV              &kp PG_UP   &kp UP                  &trans         &trans         &trans
-                &trans       &trans    &trans     &trans           &trans       &trans       &kp HOME                &kp LEFT    &kp DOWN                &kp RIGHT      &kp END        &kp C_PLAY_PAUSE
-                &trans       &trans    &trans     &trans           &trans       &trans       &kp C_NEXT              &kp PG_DN   &none                   &kp C_VOL_DN   &kp C_VOL_UP   &kp C_MUTE
-                                       &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
+                &trans     &trans       &trans       &kp UP       &trans    &trans    &trans    &kp N7    &kp N8     &kp N9   &kp FSLH    &trans
+                &trans     &trans       &kp LEFT     &kp DOWN     &kp RIGHT &trans    &trans    &kp N4    &kp N5     &kp N6   &kp ASTRK   &kp EQUAL
+                &trans     &trans       &trans       &trans       &trans    &trans    &trans    &kp N1    &kp N2     &kp N3   &kp MINUS   &trans
+                                         &kp trans  &kp trans    &kp trans         &kp trans  &kp trans       &kp trans      &kp trans    &kp trans
             >;
         };
 
-        adjust_layer {
+        bt_ctrl {
         // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
         // │ BRI+ │ SAT+ │ HUE+ │ ANI+ │      │ TOG  │                          │  BT1 │ BT2  │ BT3  │ BT4  │ BT5  │BT_CLR│
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
@@ -210,7 +175,7 @@
         // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
         //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯    
-            display-name = "Adjust";        
+            display-name = "BT CTRL";        
             bindings = <
                 &rgb_ug RGB_BRI &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_EFF &none &rgb_ug RGB_TOG              &bt BT_SEL 0 &bt BT_SEL 1  &bt BT_SEL 2 &bt BT_SEL 3       &bt BT_SEL 4        &bt BT_CLR
                 &rgb_ug RGB_BRD &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_EFR &none &none                        &none        &none         &none        &ext_power EP_ON   &ext_power EP_OFF   &ext_power EP_TOG
