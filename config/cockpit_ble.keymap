@@ -86,13 +86,13 @@
         compatible = "zmk,keymap";
         default_layer {
        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-       // │  TAB │  Q   │  W   │  F   │  P   │  G   │                          │  J   │  L   │  U   │  Y   │   ;  │ BSPC │
+       // │ TAB  │  Q   │  W   │  E   │  R   │  T   │                          │  Y   │  U   │  I   │  O   │  P   │ BSPC │
        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-       // │  ESC │  A   │  R   │  S   │NAV T │  D   │                          │  H   │  N   │  E   │  I   │  O   │   '  │
+       // │ ESC  │ GUI_A│ALT_S │SFT_D │CTL_F │  G   │                          │  H   │CTL_J │SFT_K │ALT_L │GUI_; │  '   │
        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-       // │SFT_CL│ALT Z │CTL X │SFT C │  V   │  B   │         (ENCODERS)       │  K   │  M   │SFT , │CTL . │ALT / │ ENT  │
+       // │LSHFT │  Z   │  X   │  C   │  V   │  B   │         (ENCODERS)       │  N   │  M   │  ,   │  .   │  /   │RSHFT_ENT│
        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-       //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
+       //                      │LCTRL │LOWER │L(NP)  │ │  PLAY  ││  MUTE  │ │ L(NP)  │RAISE │ RGUI │
        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯            
             display-name = "QWERTY ENG";
             bindings = <
@@ -106,13 +106,13 @@
 
         raise_layer {
         // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │ ESC  │  /   │  1   │  2   │  3   │  -   │                          │  F1  │  F2  │  F3  │  F4  │      │      │
+        // │ `~   │  !   │  @   │  #   │  $   │  %   │                          │  6   │  7   │  8   │  9   │  0   │ DEL  │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │  *   │  4   │  5   │  6   │  +   │                          │  F5  │  F6  │  F7  │  F8  │      │      │
+        // │  -   │  F1  │  F2  │  F3  │  F4  │  F5  │                          │  F6  │  -   │  =   │  [   │  ]   │  \   │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │  %   │  7   │  8   │  9   │  0   │                          │  F9  │  F10 │ F11  │  F1  │      │      │
+        // │CAPS  │  F7  │  F8  │  F9  │ F10  │ F11  │                          │ F12  │  <   │  >   │ PG_UP│ PG_DN│ ENTER│
         // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
+        //                      │      │      │        │ │        ││        │ │        │      │      │
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯   
             display-name = "Raise";         
             bindings = <
@@ -123,20 +123,20 @@
             >;
 
         };
-
+ 
         lower_layer {
         // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │ ESC  │      │      │      │      │      │                          │  (   │  )   │  =   │  &   │  |   │ DEL  │
+        // │  ~   │  1   │  2   │  3   │  4   │  5   │                          │  ^   │  &   │  *   │  (   │  )   │ DEL  │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │  {   │  }   │  _   │  $   │  #   │   "  │
+        // │      │  F1  │  F2  │  F3  │  F4  │  F5  │                          │  F6  │  _   │  +   │  {   │  }   │  |   │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │  [   │  ]   │  <   │  >   │  \   │ ENT  │
+        // │CAPS  │  F7  │  F8  │  F9  │ F10  │ F11  │                          │ F12  │      │      │ HOME │ END  │      │
         // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │  PREV  ││  NEXT  │ │  ENTER │RAISE │ WIN  │
+        //                      │      │      │        │ │        ││        │ │        │      │      │
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯    
             display-name = "Lower";        
             bindings = <
-                &kp TILDE  &trans   &trans   &trans   &trans      &trans     &kp CARET &kp AMPS     &kp ASTRK  &kp LPAR     &kp RPAR     &kp DEL
+                &kp TILDE  &kp N1   &kp N2   &kp N3   &kp N4      &kp N5     &kp CARET &kp AMPS     &kp ASTRK  &kp LPAR     &kp RPAR     &kp DEL
                 &trans     &kp F1   &kp F2   &kp F3   &kp F4      &kp F5     &kp F6    &kp UNDER    &kp PLUS   &kp LBRC     &kp RBRC     &kp PIPE
                 &kp CAPS   &kp F7   &kp F8   &kp F9   &kp F10     &kp F11    &kp F12   &trans       &trans     &kp HOME     &kp END      &trans
                                          &trans  &trans    &trans         &trans  &trans       &trans      &trans    &trans
@@ -148,32 +148,32 @@
 
         numpad {
         // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │ ESC  │      │      │  €   │  £   │  Ğ   │                          │      │      │      │      │      │      │
+        // │      │      │      │  UP  │C HOME│PageUp│                          │      │  7   │  8   │  9   │  /   │      │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │  !   │  @   │  Ş   │  ₺   │      │                          │      │      │      │      │      │      │
+        // │      │ HOME │ LEFT │ DOWN │ RIGHT│ END  │                          │      │  4   │  5   │  6   │  *   │  =   │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │  Ç   │      │      │                          │      │      │      │      │      │      │
+        // │      │      │      │      │C END │PageDn│                          │  0   │  1   │  2   │  3   │  -   │      │
         // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
+        //                      │      │      │        │ │        ││        │ │        │      │      │
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯
             display-name = "Numpad";            
             bindings = <
-                &trans     &trans       &trans       &kp UP       &trans    &trans    &trans    &kp N7    &kp N8     &kp N9   &kp FSLH    &trans
-                &trans     &trans       &kp LEFT     &kp DOWN     &kp RIGHT &trans    &trans    &kp N4    &kp N5     &kp N6   &kp ASTRK   &kp EQUAL
-                &trans     &trans       &trans       &trans       &trans    &trans    &trans    &kp N1    &kp N2     &kp N3   &kp MINUS   &trans
+                &trans     &trans       &trans       &kp UP      &kp LC(HOME) &kp PG_UP    &trans    &kp N7    &kp N8     &kp N9   &kp FSLH    &trans
+                &trans     &kp HOME     &kp LEFT     &kp DOWN    &kp RIGHT    &kp END     &trans    &kp N4    &kp N5     &kp N6   &kp ASTRK   &kp EQUAL
+                &trans     &trans       &trans       &trans      &kp LC(END)  &kp PG_DN    &kp N0    &kp N1    &kp N2     &kp N3   &kp MINUS   &trans
                                          &trans  &trans    &trans         &trans  &trans       &trans      &trans    &trans
             >;
         };
 
         bt_ctrl {
         // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │ BRI+ │ SAT+ │ HUE+ │ ANI+ │      │ TOG  │                          │  BT1 │ BT2  │ BT3  │ BT4  │ BT5  │BT_CLR│
+        // │ BRI+ │ SAT+ │ HUE+ │ EFF+ │      │ TOG  │                          │ BT0  │ BT1  │ BT2  │ BT3  │ BT4  │CLR   │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │ BRI- │ SAT- │ HUE- │ ANI- │      │      │                          │      │      │      │EP_ON │EP_OFF│EP_TOG│
+        // │ BRI- │ SAT- │ HUE- │ EFF- │      │      │                          │      │      │      │EP_ON │EP_OFF│EP_TOG│
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │RESET │ BOOT │      │O_USB │O_BLE │OUTTOG│
+        // │      │      │      │      │      │      │                          │RESET │BOOT  │      │USB   │BLE   │TOG   │
         // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
+        //                      │      │      │        │ │        ││        │ │        │      │      │
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯    
             display-name = "BT CTRL";        
             bindings = <
